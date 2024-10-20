@@ -1,0 +1,11 @@
+<h2>Song Classified: {{ song.title }} by {{ song.artist }}</h2>
+<p>Genre: {{ song.genre }}</p>
+
+<h3>Similar Songs</h3>
+<ul>
+    {% for similar_song in similar_songs %}
+        <li>{{ similar_song.title }} by {{ similar_song.artist }} ({{ similar_song.genre }})</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'classify_song' %}">Classify Another Song</a>
