@@ -1,6 +1,18 @@
-<h2>Classify Song</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Classify</button>
-</form>
+<html>
+    <head>
+        <title>Classify Song</title>
+
+    </head>
+    <body>
+        <h2> Classify a Song</h2>
+
+        <form method = "post">
+            {%csrf_token%}
+            {{ form.as_p }}
+            <button type="submit">Classify</button>
+        </form>
+
+        <a href="{% url 'home' %}">Back to homepage</a>
+    </body>
+</html>
+
