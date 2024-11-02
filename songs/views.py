@@ -6,14 +6,14 @@ from sklearn.neighbors import KNeighborsClassifier
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-client_id=open('spotify_client_id.txt')
-client_secret=open('spotify_client_secret.txt')
+client_id=open('spotify_client_id.txt','r').read()
+client_secret=open('spotify_client_secret.txt','r').read()
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id,client_secret=client_secret))  #spotify api
 
 def home(request):
     return render(request, 'home.html')
 
-#using the api classify the genre
+#using the api to classify the genre
 def classify_genre(song_title,artist):
 
     results = sp.search(q=f'track:{song_title} artist:{artist}', type='track', limit=1) #dictionary  
@@ -62,11 +62,11 @@ def classify_song(request):
 
             similar_songs = recommend_similar_songs(genre) 
 
-            return render(request, 'songs/result.html', {'song': song, 'similar_songs': similar_songs})
+            return render(request, 'songs/templates/result.html', {'song': song, 'similar_songs': similar_songs})
     else:
         form = SongForm()
 
-    return render(request, 'songs/classify.html', {'form': form})
+    return render(request, 'songs/templates/classify.html', {'form': form})
 
 '''
 recommendations: parameters: genre,artist,tracks(any 1 must be provided); limit country(optional)
